@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   环境测试
+   <router-view></router-view>
   </div>
 </template>
 
@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style>
-
+#app{
+  height: 100%;
+}
 </style>

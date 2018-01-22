@@ -3,10 +3,26 @@ import axios from "axios";
 import api from "../js/api-config";
 
 export default function(to,from,next){
+
+    var noCheckPage=[
+      "goodsList",
+      "goodsDetail",
+      "shopCart"
+    ]
+
     // console.log(to,from);
     var isLogin=false;
     var toPage=to.name;
-    axios.get(api.islogin).then(res=>{
+
+    
+    // console.log(toPage);
+    
+
+    if(noCheckPage.some(v=>v==toPage)){
+      return next();
+    }
+
+    axios.get(api.isLogin).then(res=>{
       if(res.data.code==='logined'){
         isLogin=true;
       }
@@ -15,7 +31,7 @@ export default function(to,from,next){
       if(toPage ==='login' && isLogin){
         // console.log('1');
         
-        next("/admin");
+        next("/");
       }else if(toPage!=='login' && !isLogin){
         // console.log('2');
         // console.log(to.fullPath);
